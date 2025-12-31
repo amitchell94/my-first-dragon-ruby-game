@@ -1,0 +1,48 @@
+# DragonRuby Engine Files (don't track these)
+CHANGELOG*.txt
+VERSION.txt
+README.txt
+CHEATSHEET.md
+ctags-emacs
+ctags-vim
+dragonruby
+dragonruby-httpd
+dragonruby-publish
+dragonruby*.exe
+*.dll
+*.so
+*.dylib
+open-source-licenses.txt
+eula.txt
+font.ttf
+*.png
+docs/
+samples/
+
+# DragonRuby Runtime Files
+tmp/
+console_history.txt
+.dragonruby/
+.ruby-lsp/
+builds/
+exceptions/
+logs/
+
+# mygame Runtime Files
+mygame/errors/
+mygame/open-source-licenses.txt
+
+# Default DragonRuby Sprites (you can add custom sprites later)
+mygame/sprites/square/
+mygame/sprites/circle/
+mygame/sprites/hexagon/
+mygame/sprites/triangle/
+mygame/sprites/isometric/
+mygame/sprites/t-pose/
+mygame/sprites/tile/
+mygame/sprites/misc/
+mygame/metadata/icon.png
+
+# OS Files
+.DS_Store
+Thumbs.db
