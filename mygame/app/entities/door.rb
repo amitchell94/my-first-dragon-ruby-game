@@ -10,17 +10,18 @@ module Door
         dx: 0,
         dy: 0,
         path: 'sprites/square/blue.png',
+        unlocked: false
       }
     end
 
     def update(args)
       return unless args.state.current_scene == 2
+      return if args.state.door.unlocked
 
-      door_collision = args.state.door.intersect_rect? args.state.player
-
-      if door_collision
+      if args.state.player.intersect_rect? args.state.door
         if args.state.player.inventory.include?("key")
-          args.state.door.y = 2000
+          args.state.player.inventory.delete("key")
+          args.state.door.unlocked = true
         elsif args.state.player.dx > 0
           args.state.player.x = args.state.door.x - args.state.player.w
         elsif args.state.player.dx < 0
@@ -32,11 +33,9 @@ module Door
 
     def render(args)
       return unless args.state.current_scene == 2
+      return if args.state.door.unlocked
 
       args.outputs.sprites << args.state.door
-      # Debug label
-      door_collision = args.state.door.intersect_rect? args.state.player
-      args.outputs.labels << [333, 333, "#{door_collision}"]
     end
   end
 end

@@ -10,23 +10,24 @@ module Key
         dx: 0,
         dy: 0,
         path: 'sprites/square/blue.png',
+        collected: false
       }
     end
 
     def update(args)
-      collision = args.state.key.intersect_rect? args.state.player
+      return unless args.state.current_scene == 1
 
-      if collision
-        args.state.player.inventory << "key"
-        args.state.key.y = 2000
+      if args.state.player.intersect_rect? args.state.key
+        args.state.player.inventory << "key" unless args.state.key.collected
+        args.state.key.collected = true
       end
     end
 
     def render(args)
+      return unless args.state.current_scene == 1
+      return if args.state.key.collected
+
       args.outputs.sprites << args.state.key
-      # Debug labels
-      args.outputs.labels << [100, 100, "key"]
-      args.outputs.labels << [500, 500, "#{args.state.player.inventory}"]
     end
   end
 end
